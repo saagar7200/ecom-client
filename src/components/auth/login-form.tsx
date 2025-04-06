@@ -35,7 +35,7 @@ const LoginForm = () => {
 
         onError: (error) => {
             console.log(error)
-            toast.error('Login failed')
+            toast.error(error?.message ?? 'Login failed')
         }
 
     })

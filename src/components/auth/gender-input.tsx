@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Select from 'react-select'
+import dynamic from "next/dynamic";
+const Select = dynamic(() => import('react-select'))
 import { Controller, } from "react-hook-form";
 import React from 'react';
 interface IProps {

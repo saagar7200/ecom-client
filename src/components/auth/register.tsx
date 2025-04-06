@@ -42,9 +42,9 @@ const Register = () => {
             toast.success('Register successful')
         },
 
-        onError: (error: any) => {
+        onError: (error) => {
             console.log('register', error)
-            toast.error(error?.response?.data.message ?? 'Register failed')
+            toast.error(error.message ?? 'Register failed')
         }
 
     })
