@@ -12,11 +12,11 @@ const Layout: React.FC<IProps> = ({ children }) => {
     const pathName = usePathname()
     const hideNav = pathName === '/login' || pathName === '/sign-up'
     return (
-        <div className='h-full w-full'>
+        <div className='h-full w-full '>
             {!hideNav && <div>
                 <Header />
             </div>}
-            <div className='min-h-[100vh]'>
+            <div className='min-h-[100vh] mb-10'>
                 {children}
             </div>
             {/* footer */}

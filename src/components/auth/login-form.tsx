@@ -7,12 +7,12 @@ import { loginSchema } from "@/schemas/login.schema"
 import { LuAsterisk } from "react-icons/lu";
 import toast from 'react-hot-toast';
 import { ILogin } from "@/interface/auth/auth.interface"
-import {
-    useMutation
-} from '@tanstack/react-query'
+import { useMutation} from '@tanstack/react-query'
 import { login } from "@/api/auth"
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
+    const router = useRouter()
 
 
     const { register, handleSubmit, formState: { errors } } = useForm<ILogin>({
@@ -30,7 +30,8 @@ const LoginForm = () => {
         onSuccess: (response) => {
             // Invalidate and refetch
             console.log('response', response)
-            toast.success('Login successfull')
+            toast.success('Login successful')
+            router.replace('/')
         },
 
         onError: (error) => {

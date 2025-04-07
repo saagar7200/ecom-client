@@ -3,23 +3,34 @@ import React from 'react'
 import ProductCard from '../product/product-card';
 interface IProp {
     title: string;
+    isLoading:boolean;
     products: any[]
 
 }
 
-const ProductList: React.FC<IProp> = ({ title = 'Most Sale', products }) => {
+const ProductList: React.FC<IProp> = ({ title = 'Most Sale', products,isLoading=false
+
+
+ }) => {
+
     return (
         <div className='w-full px-4'>
             <div className='w-full py-2'>
                 <h1 className='font-bold text-2xl tracking-wider' >{title}</h1>
             </div>
-            {/* products */}
-            <div className='flex gap-4 my-2 flex-wrap'>
+            {isLoading && <p>Loading..</p>}
+            {
+                !isLoading  && products.length > 0 &&
+                 <div className='flex gap-4 my-2 flex-wrap'>
                 {
-                    products.map((product, index) => <ProductCard key={index} />)
+                    products?.map((product, index) => <ProductCard key={index}  product={product}/>)
                 }
 
-            </div>
+                </div>
+
+            }
+
+            { !isLoading && products &&  products.length === 0  && <p>No Data found</p> }
 
         </div>
     )

@@ -15,8 +15,9 @@ import toast from 'react-hot-toast';
 
 import { register as registerUser } from "@/api/auth"
 import { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
 const Register = () => {
-
+const router = useRouter()
 
     const { control, register, handleSubmit, formState: { errors } } = useForm<IRegister>({
         defaultValues: {
@@ -37,9 +38,9 @@ const Register = () => {
     const { mutate, error, isPending } = useMutation({
         mutationFn: registerUser,
         onSuccess: (response) => {
-            // Invalidate and refetch
             console.log('response', response)
             toast.success('Register successful')
+            router.replace('/login')
         },
 
         onError: (error) => {
