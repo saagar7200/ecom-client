@@ -6,6 +6,8 @@ import {getAllTendingProduct } from '@/api/product'
 import toast from 'react-hot-toast'
 
 
+
+
 const TendingProducts = () => {
     const { isPending,isError, data, error } = useQuery({
         queryKey: ['trending-products'],

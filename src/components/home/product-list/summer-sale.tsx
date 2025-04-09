@@ -3,31 +3,31 @@ import ProductList from '../products-list'
 
 const products = [
     {
-        id:'1',
+        _id:'1',
         coverImage: '/product/product.webp',
         name: 'Tending products',
         price: 230
     },
     {
-        id:'2',
+        _id:'2',
         coverImage: '/product/product.webp',
         name: 'Tending products',
         price: 230
     },
     {
-        id:'3',
+        _id:'3',
         coverImage: '/product/product.webp',
         name: 'Tending products',
         price: 230
     },
     {
-        id:'4',
+        _id:'4',
         coverImage: '/product/product.webp',
         name: 'Tending products',
         price: 230
     },
     {
-        id:'5',
+        _id:'5',
         coverImage: '/product/product.webp',
         name: 'Tending products',
         price: 230

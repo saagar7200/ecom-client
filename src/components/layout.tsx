@@ -4,6 +4,7 @@ import React from 'react'
 import Header from './header';
 import { usePathname } from 'next/navigation'
 import Footer from './footer/footer';
+
 interface IProps {
     children: React.ReactNode;
 }

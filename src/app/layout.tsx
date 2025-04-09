@@ -4,6 +4,7 @@ import "./globals.css";
 import Layout from "@/components/layout";
 import Provider from "@/providers/provider";
 import { Toaster } from 'react-hot-toast';
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],

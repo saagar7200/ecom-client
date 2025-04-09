@@ -2,13 +2,13 @@
 import React from 'react'
 import Image from 'next/image'
 import { IProduct } from '@/interface/auth/product.interface'
+import Link from 'next/link'
 
 interface IProp {
     product:IProduct
 }
 
 const ProductCard:React.FC<IProp> = ({product}) => {
-    console.log('product list',product)
     
     const {coverImage,price,name} = product;
     return (
@@ -19,8 +19,8 @@ const ProductCard:React.FC<IProp> = ({product}) => {
                     className='h-full w-full transition-all duration-300 hover:scale-[1.1]'
                     height={1000}
                     width={1000}
-                    src={coverImage ?? '/product/product.webp'}
-                    alt='product image' />
+                    src={ coverImage ? `${process.env.NEXT_PUBLIC_API_BASE_URL}/${coverImage}` : '/product/product.webp'}
+                    alt={name} />
             </div>
             <div className='p-3'>
                 <p className='text-[15px]'>
@@ -30,9 +30,9 @@ const ProductCard:React.FC<IProp> = ({product}) => {
                 रु.{price}
                 </span>
             </div>
-            <div >
+            <Link href={`/product/${product._id}`} >
                 <button className='cursor-pointer py-3 w-full text-[14px] bg-black text-white font-semibold'>View Detail</button>
-            </div>
+            </Link>
         </div>
     )
 }
