@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import React, { useEffect } from 'react'
 import toast from 'react-hot-toast'
 import ImageSlider from './image-slider'
+import {ProductDetails} from './product-detail'
 interface IProp {
     id:string
 }
@@ -32,7 +33,6 @@ const ProductDetail:React.FC<IProp> = ({id}) => {
     
 
 
-    console.log(isLoading,data)
 
     useEffect(()=>{
         if(isError){
@@ -40,19 +40,18 @@ const ProductDetail:React.FC<IProp> = ({id}) => {
         }
     },[error,isError])
   return (
-    <div className='px-10 flex  gap 10 w-full'>
+    <div className='px-10 flex  gap-10 w-full mt-1'>
         {/* left side */}
         {/* image section */}
         <div className=''>
-            Image carousel
-            <div className='w-[600px] h-[600px]'>
+            <div className='w-[400px] h-[400px]'>
             <ImageSlider images={product.images}/>
             </div>
         </div>
         {/* right side */}
         {/* product detail */}
-        <div className='flex-1'>
-            detail
+        <div className='flex-1 '>
+            <ProductDetails product={product}/>
         </div>
     </div>
   )
