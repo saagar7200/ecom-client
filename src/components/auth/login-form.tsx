@@ -10,6 +10,7 @@ import { ILogin } from "@/interface/auth/auth.interface"
 import { useMutation} from '@tanstack/react-query'
 import { login } from "@/api/auth"
 import { useRouter } from "next/navigation";
+import Cookies from 'js-cookie'
 
 const LoginForm = () => {
     const router = useRouter()
@@ -30,7 +31,8 @@ const LoginForm = () => {
         onSuccess: (response) => {
             // Invalidate and refetch
             console.log('response', response)
-            toast.success('Login successful')
+            Cookies.set('access_token',response.token,{ expires: 1 })
+            toast.success( response?.message ?? 'Login successful')
             router.replace('/')
         },
 

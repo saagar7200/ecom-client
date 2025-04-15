@@ -33,27 +33,37 @@ const ProductDetail:React.FC<IProp> = ({id}) => {
     
 
 
+    console.log('get by id',data)
 
     useEffect(()=>{
         if(isError){
             toast.error(error?.message ??'something went wrong')
         }
     },[error,isError])
+
+    if(isLoading){
+        return <div>Loading...</div>
+    }
   return (
+    <>
     <div className='px-10 flex  gap-10 w-full mt-1'>
         {/* left side */}
         {/* image section */}
         <div className=''>
             <div className='w-[400px] h-[400px]'>
-            <ImageSlider images={product.images}/>
+            <ImageSlider images={data?.data?.images ?? []}/>
             </div>
         </div>
         {/* right side */}
         {/* product detail */}
         <div className='flex-1 '>
-            <ProductDetails product={product}/>
+            <ProductDetails product={data?.data}/>
         </div>
     </div>
+    <div>
+        {/*  */}
+    </div>
+    </>
   )
 }
 

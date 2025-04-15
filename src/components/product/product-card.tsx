@@ -14,12 +14,12 @@ const ProductCard:React.FC<IProp> = ({product}) => {
     return (
         <div className='overflow-hidden tracking-wider border border-gray-300 w-fit rounded-md '>
             {/* image */}
-            <div className='h-50 w-60 aspect-square p-3'>
+            <div className='h-50 w-60 aspect-square '>
                 <Image
-                    className='h-full w-full transition-all duration-300 hover:scale-[1.1]'
+                    className='h-full w-full transition-all object-cover duration-300 hover:scale-[1.1]'
                     height={1000}
                     width={1000}
-                    src={ coverImage ? `${process.env.NEXT_PUBLIC_API_BASE_URL}/${coverImage}` : '/product/product.webp'}
+                    src={ coverImage ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${coverImage}` : '/product/product.webp'}
                     alt={name} />
             </div>
             <div className='p-3'>
@@ -27,7 +27,7 @@ const ProductCard:React.FC<IProp> = ({product}) => {
                     {name}
                 </p>
                 <span className='text-[15px]'>
-                रु.{price}
+                रु.{price.toLocaleString()}
                 </span>
             </div>
             <Link href={`/product/${product._id}`} >
