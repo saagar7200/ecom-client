@@ -1,14 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
-// @ts-expect-error //type error
 import { StarRating } from 'react-flexible-star-rating';
 import React ,{useEffect}from "react";
  
 interface IProp {
     rating:number
+    onChange:(_: any, value: any)=>void
+    edit?:boolean
 }
  
-export const RatingStar:React.FC<IProp> = ({rating}) =>{
+export const RatingStar:React.FC<IProp> = ({rating,edit=false,onChange}) =>{
 
     useEffect(()=>{
         console.log('render',rating)
@@ -20,7 +22,12 @@ export const RatingStar:React.FC<IProp> = ({rating}) =>{
     return(
       
         <div className='flex'>
-            <StarRating className='cursor-pointer disabled:cursor-none' isReadOnly={true} dimension={8} initialRating={rating} onRatingChange={()=>{}} />
+            <StarRating 
+            isReadOnly={!edit} 
+            dimension={8} 
+            initialRating={rating} 
+            isHalfRatingEnabled
+            onRatingChange={(newRating) => onChange(null,newRating)} />
         </div>
            
        

@@ -5,25 +5,27 @@ import React, { useEffect } from 'react'
 import toast from 'react-hot-toast'
 import ImageSlider from './image-slider'
 import {ProductDetails} from './product-detail'
+import ReviewForm from '@/components/ui/review-form'
+import PageLoading from '@/components/ui/page-loading'
 interface IProp {
     id:string
 }
 
-const product = {
-    name:'Laptop',
-    category:{
-        name:'Electronics'
-    },
-    _id:'3',
-    coverImage: '/product/product.webp',
-    images:['/product/product.webp','/product/product.webp','/product/product.webp',],
-    price:'1000',
-    averageRating: 3.5,
-    description:`Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, expedita? Amet rem itaque
-        facilis reprehenderit suscipit culpa cupiditate placeat facere, natus, nemo sequi fugiat alias
-        modi dolorem. Natus, nisi culpa!`,
+// const product = {
+//     name:'Laptop',
+//     category:{
+//         name:'Electronics'
+//     },
+//     _id:'3',
+//     coverImage: '/product/product.webp',
+//     images:['/product/product.webp','/product/product.webp','/product/product.webp',],
+//     price:'1000',
+//     averageRating: 3.5,
+//     description:`Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, expedita? Amet rem itaque
+//         facilis reprehenderit suscipit culpa cupiditate placeat facere, natus, nemo sequi fugiat alias
+//         modi dolorem. Natus, nisi culpa!`,
 
-}
+// }
 
 const ProductDetail:React.FC<IProp> = ({id}) => {
     const {isLoading,data,isError,error} = useQuery({
@@ -42,28 +44,29 @@ const ProductDetail:React.FC<IProp> = ({id}) => {
     },[error,isError])
 
     if(isLoading){
-        return <div>Loading...</div>
+        return <PageLoading/>
     }
   return (
-    <>
-    <div className='px-10 flex  gap-10 w-full mt-1'>
+    <div className='flex flex-col'>
+    <div className='px-10 flex  gap-10 w-full h-full mt-1'>
         {/* left side */}
         {/* image section */}
-        <div className=''>
             <div className='w-[400px] h-[400px]'>
             <ImageSlider images={data?.data?.images ?? []}/>
             </div>
-        </div>
         {/* right side */}
         {/* product detail */}
         <div className='flex-1 '>
             <ProductDetails product={data?.data}/>
         </div>
     </div>
-    <div>
+    <div className='mt-10'>
         {/*  */}
+        <ReviewForm productId={id}/>
     </div>
-    </>
+
+
+    </div>
   )
 }
 

@@ -20,16 +20,17 @@ const ImageSlider:React.FC<IProps> = ({images}) =>{
         swipeToSlide: true,
       };
     return(
-        <div className="w-full h-full ">
-      <Slider {...settings}>
+        <div className="w-[400px] h-[400px] ">
+      <Slider className="w-[400px] h-[400px] " {...settings}>
         {images.map((image,index) => {
             return(
-                <div key={index}>
+                <div className='w-[400px] h-[400px] rounded-md overflow-hidden shadow' key={index}>
                     <Image
                     src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${image}`}
                     width={1000}
                     height={1000}
                     alt={'product detail image'}
+                    className='w-[400px] h-[400px] object-cover'
 
                     />
                 </div>
