@@ -7,6 +7,7 @@ import ImageSlider from './image-slider'
 import {ProductDetails} from './product-detail'
 import ReviewForm from '@/components/ui/review-form'
 import PageLoading from '@/components/ui/page-loading'
+import Reviews from '../review/reviews'
 interface IProp {
     id:string
 }
@@ -47,11 +48,11 @@ const ProductDetail:React.FC<IProp> = ({id}) => {
         return <PageLoading/>
     }
   return (
-    <div className='flex flex-col'>
-    <div className='px-10 flex  gap-10 w-full h-full mt-1'>
+    <div className='flex flex-col px-10 '>
+    <div className='flex flex-col lg:flex-row  gap-10 w-full h-full mt-1'>
         {/* left side */}
         {/* image section */}
-            <div className='w-[400px] h-[400px]'>
+            <div className='w-[400px] h-[400px] mx-auto'>
             <ImageSlider images={data?.data?.images ?? []}/>
             </div>
         {/* right side */}
@@ -63,6 +64,7 @@ const ProductDetail:React.FC<IProp> = ({id}) => {
     <div className='mt-10'>
         {/*  */}
         <ReviewForm productId={id}/>
+        <Reviews productId={id}/>
     </div>
 
 

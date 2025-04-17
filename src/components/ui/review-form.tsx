@@ -8,7 +8,7 @@ import { IReview } from '@/interface/review.interface';
 import { useMutation,useQueryClient } from '@tanstack/react-query';
 import { postReview } from '@/api/review';
 import toast from 'react-hot-toast';
-import PageLoading from './page-loading';
+// import PageLoading from './page-loading';
 
 
 
@@ -18,7 +18,7 @@ interface IProps {
 
 const ReviewForm:React.FC<IProps> = ({productId}) => {
     const queryClient = useQueryClient()
-    const {control,register, handleSubmit, formState: { errors }} = useForm<IReview>({
+    const {reset,control,register, handleSubmit, formState: { errors }} = useForm<IReview>({
         defaultValues:{
             rating:1,
             review:''
@@ -32,12 +32,13 @@ const ReviewForm:React.FC<IProps> = ({productId}) => {
         mutationFn:postReview,
         mutationKey:['reviews'],
         onSuccess(data:any) {
-            console.log('add to wishlist',data)
-            queryClient.invalidateQueries({queryKey:['reviews','get-product-by-id']})
-            toast.success(data?.message ?? 'Added to cart') 
+            
+            queryClient.invalidateQueries({queryKey:['reviews','get-product-by-id',productId]})
+            toast.success(data?.message ?? 'Review submitted') 
+            reset()
         },
         onError:(err:Error) =>{
-            toast.error(err?.message ?? 'Add to cart failed.')
+            toast.error(err?.message ?? 'Review can not submitted.')
             console.log(err)
         }
     })
@@ -47,9 +48,9 @@ const ReviewForm:React.FC<IProps> = ({productId}) => {
     }
 
 
-    if(isPending){
-        return <PageLoading/>
-    }
+    // if(isPending){
+    //     return <PageLoading/>
+    // }
 
   return (
       <div>
@@ -83,7 +84,7 @@ const ReviewForm:React.FC<IProps> = ({productId}) => {
             disabled={isPending}
 
             className='cursor-pointer disabled:cursor-not-allowed disabled:bg-blue-400 px-4 py-2 bg-blue-500 rounded-md text-center font-bold text-white tracking-wider'>
-                Submit Review
+               {isPending ? 'Submitting...':' Submit Review'}
             </button>
         </div>
             </div>

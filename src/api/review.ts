@@ -17,3 +17,14 @@ export const postReview = async(data:IReview) =>{
         throw error?.response?.data; 
     }
 }
+
+
+export const getProductReviews = async(productId:string) =>{
+    try{
+        const response = await api.get(`/review/${productId}`)
+        return response?.data
+
+    }catch(error:any){
+        throw error?.response?.data; 
+    }
+}

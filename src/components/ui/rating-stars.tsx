@@ -12,9 +12,9 @@ interface IProp {
  
 export const RatingStar:React.FC<IProp> = ({rating,edit=false,onChange}) =>{
 
-    useEffect(()=>{
-        console.log('render',rating)
-    },[rating])
+    // useEffect(()=>{
+    //     console.log('render',rating)
+    // },[rating])
 
 
    
@@ -25,7 +25,7 @@ export const RatingStar:React.FC<IProp> = ({rating,edit=false,onChange}) =>{
             <StarRating 
             isReadOnly={!edit} 
             dimension={8} 
-            initialRating={rating} 
+            initialRating={rating ?? 0} 
             isHalfRatingEnabled
             onRatingChange={(newRating) => onChange(null,newRating)} />
         </div>
