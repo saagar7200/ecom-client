@@ -12,9 +12,11 @@ import { login } from "@/api/auth"
 import { useRouter } from "next/navigation";
 import Cookies from 'js-cookie'
 
+import {useAuth} from '@/context/auth.context'
+
 const LoginForm = () => {
     const router = useRouter()
-
+    const {setUser} = useAuth()
 
     const { register, handleSubmit, formState: { errors } } = useForm<ILogin>({
         defaultValues: {
@@ -29,9 +31,10 @@ const LoginForm = () => {
     const { mutate, error, isPending } = useMutation({
         mutationFn: login,
         onSuccess: (response) => {
-            // Invalidate and refetch
             console.log('response', response)
             Cookies.set('access_token',response.token,{ expires: 1 })
+            localStorage.setItem('user',JSON.stringify(response.user))
+            setUser(response.user)
             toast.success( response?.message ?? 'Login successful')
             router.replace('/')
         },

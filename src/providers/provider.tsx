@@ -4,7 +4,7 @@ import {
     QueryClientProvider,
 } from '@tanstack/react-query'
 import React from 'react';
-
+import AuthProvider  from '@/context/auth.context'
 interface IProps {
     children: React.ReactNode;
 }
@@ -16,7 +16,11 @@ const Provider: React.FC<IProps> = ({ children }) => {
 
     return (
         <QueryClientProvider client={queryClient}>
+            <AuthProvider>
+            <>
             {children}
+            </>
+            </AuthProvider>
         </QueryClientProvider>
     )
 }
