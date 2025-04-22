@@ -11,3 +11,13 @@ export const addToWishList = async(productId:string) =>{
         throw error?.response?.data; 
     }
 }
+
+export const getWishList = async() =>{
+    try{
+        const response = await api.get(`/wishlist`)
+        return response?.data
+
+    }catch(error:any){
+        throw error?.response?.data; 
+    }
+}

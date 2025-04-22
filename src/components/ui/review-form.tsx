@@ -33,7 +33,7 @@ const ReviewForm:React.FC<IProps> = ({productId}) => {
         mutationKey:['reviews'],
         onSuccess(data:any) {
             
-            queryClient.invalidateQueries({queryKey:['reviews','get-product-by-id',productId]})
+            queryClient.invalidateQueries({queryKey:['reviews']})
             toast.success(data?.message ?? 'Review submitted') 
             reset()
         },
@@ -48,9 +48,7 @@ const ReviewForm:React.FC<IProps> = ({productId}) => {
     }
 
 
-    // if(isPending){
-    //     return <PageLoading/>
-    // }
+   
 
   return (
       <div>
