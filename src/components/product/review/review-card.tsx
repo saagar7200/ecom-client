@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { IReviews } from '@/interface/review.interface'
 import React from 'react'
 import {RatingStar} from '@/components/ui/rating-stars'
